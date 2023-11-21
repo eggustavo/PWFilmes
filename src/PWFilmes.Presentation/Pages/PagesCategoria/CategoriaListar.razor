@@ -3,6 +3,7 @@
 @using System.Text.Json
 
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <h3>Categorias</h3>
 
@@ -13,7 +14,8 @@
                   Icon="add" 
                   ButtonStyle="ButtonStyle.Primary" 
                   Text="Nova Categoria"
-                  class="rz-border-radius-10" />
+                  class="rz-border-radius-10"
+                  Click="NovaCategoria"/>
 </RadzenStack>
 
 <RadzenDataGrid AllowFiltering="true"
@@ -50,5 +52,10 @@
         categorias = JsonSerializer.Deserialize<List<Categoria>>(content, options);
 
         await base.OnInitializedAsync();
+    }
+
+    public void NovaCategoria()
+    {
+        NavigationManager.NavigateTo("categoria-nova");
     }
 }

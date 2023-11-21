@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PWFilmes.Presentation", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PWFilmes.Domain", "PWFilmes.Domain\PWFilmes.Domain.csproj", "{E8ED2CF2-CDF0-48D0-88B9-673A195E769F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PWFilmes.API", "PWFilmes.API\PWFilmes.API.csproj", "{4B52CCBD-C58F-40FD-B7B5-5EB205E6CEC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PWFilmes.API", "PWFilmes.API\PWFilmes.API.csproj", "{4B52CCBD-C58F-40FD-B7B5-5EB205E6CEC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

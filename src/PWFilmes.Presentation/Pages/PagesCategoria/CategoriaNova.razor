@@ -1,0 +1,91 @@
+﻿@page "/categoria-nova"
+
+@using PWFilmes.Domain;
+
+<h3>Nova Categoria</h3>
+
+<EditForm Model="@categoriaModel">
+    <RadzenRow>
+        <RadzenColumn Size="12" SizeMD="6" SizeLG="9">
+            <RadzenFormField Text="Descrição" Style="width: 100%;">
+                <RadzenTextBox />
+            </RadzenFormField>
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
+            <RadzenFormField Text="Cor" Style="width: 100%;">
+                <RadzenTextBox />
+            </RadzenFormField>
+        </RadzenColumn>            
+    </RadzenRow>
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+        <RadzenButton Text="Cancelar"
+                      ButtonStyle="ButtonStyle.Danger"
+                      class="rz-border-radius-10" />
+        <RadzenButton Text="Confirmar"
+                      ButtonStyle="ButtonStyle.Success"
+                      class="rz-border-radius-10" />
+    </RadzenStack>
+</EditForm>
+
+@code {
+    Categoria categoriaModel = new Categoria();
+
+}
+
+
+
+@*<EditForm Model="@categoriaModel" OnValidSubmit="Confirmar">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <RadzenNotification />
+
+        <RadzenRow>
+            <RadzenColumn Size="12" SizeMD="6" SizeLG="9">
+                <RadzenFormField Text="Descrição" Style="width: 100%;">
+                    <RadzenTextBox @bind-Value="@categoriaModel.Descricao" Style="width: 100%;" />
+                </RadzenFormField>
+                <ValidationMessage For=@(() => categoriaModel.Descricao) />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
+                <RadzenFormField Text="Cor" Style="width: 100%;">
+                    <RadzenColorPicker @bind-Value=@categoriaModel.Cor ShowHSV="true" ShowRGBA="true" ShowColors="true" ShowButton="true" Style="width: 100%;" />
+                </RadzenFormField>
+                <ValidationMessage For=@(() => categoriaModel.Cor) />
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Style="width: 100%;" class="rz-mt-4">
+            <RadzenButton Icon="delete_forever" ButtonStyle="ButtonStyle.Danger" Text="Cancelar" Click="Cancelar" class="rz-border-radius-10" />
+            <RadzenButton Icon="delete_forever" ButtonStyle="ButtonStyle.Success" Text="Confirmar" ButtonType="ButtonType.Submit" class="rz-border-radius-10" />
+        </RadzenStack>
+    </EditForm>
+
+    @code {
+        Categoria categoriaModel = new Categoria();
+
+        void ShowNotification(NotificationMessage message)
+        {
+            NotificationService.Notify(message);
+        }
+
+        public async void Confirmar()
+        {
+            var myContent = JsonContent.Create(categoriaModel);
+            var response = await Http.PostAsync("api/Categoria/adicionar", myContent);
+            if (response.StatusCode == HttpStatusCode.Created)
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                ShowNotification(new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Sucesso", Detail = content, Duration = 4000 });
+                NavigationManager.NavigateTo("categoria-listar");
+            }
+        }
+
+        public void Cancelar()
+        {
+            NavigationManager.NavigateTo("categoria-listar");
+        }
+    }
+
+
+
+*@

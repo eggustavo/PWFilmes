@@ -1277,3 +1277,5 @@ C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\PWFilmes.Presentation.
 C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\PWFilmes.Presentation.dll
 C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\ref\PWFilmes.Presentation.dll
 C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\PWFilmes.Presentation.pdb
+C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\RazorDeclaration\Pages\PagesCategoria\CategoriaNova.razor.g.cs
+C:\PW\PWFilmes\src\PWFilmes.Presentation\obj\Debug\net5.0\Razor\Pages\PagesCategoria\CategoriaNova.razor.g.cs
