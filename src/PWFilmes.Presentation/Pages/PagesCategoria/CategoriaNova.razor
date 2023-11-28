@@ -1,35 +1,57 @@
 ﻿@page "/categoria-nova"
 
 @using PWFilmes.Domain;
+@using System.Net;
+
+@inject NavigationManager NavigationManager;
+@inject HttpClient Http;
 
 <h3>Nova Categoria</h3>
 
-<EditForm Model="@categoriaModel">
+<EditForm Model="@categoriaModel" OnValidSubmit="Confirmar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
     <RadzenRow>
         <RadzenColumn Size="12" SizeMD="6" SizeLG="9">
             <RadzenFormField Text="Descrição" Style="width: 100%;">
-                <RadzenTextBox />
+                <RadzenTextBox @bind-Value="categoriaModel.Descricao" />
             </RadzenFormField>
+            <ValidationMessage For=@(() => categoriaModel.Descricao) />
         </RadzenColumn>
         <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
             <RadzenFormField Text="Cor" Style="width: 100%;">
-                <RadzenTextBox />
+                <RadzenColorPicker @bind-Value="categoriaModel.Cor" />
             </RadzenFormField>
-        </RadzenColumn>            
+            <ValidationMessage For=@(() => categoriaModel.Cor) />
+        </RadzenColumn>
     </RadzenRow>
-    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End">
+    <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" class="rz-mt-4">
         <RadzenButton Text="Cancelar"
                       ButtonStyle="ButtonStyle.Danger"
-                      class="rz-border-radius-10" />
+                      class="rz-border-radius-10"
+                      Click="Cancelar" />
         <RadzenButton Text="Confirmar"
                       ButtonStyle="ButtonStyle.Success"
-                      class="rz-border-radius-10" />
+                      class="rz-border-radius-10"
+                      ButtonType="ButtonType.Submit" />
     </RadzenStack>
 </EditForm>
 
 @code {
     Categoria categoriaModel = new Categoria();
 
+    private void Cancelar()
+    {
+        NavigationManager.NavigateTo("categoria/listar");
+    }
+
+    private async void Confirmar()
+    {
+        var categoriaJson = JsonContent.Create(categoriaModel);
+        var response = await Http.PostAsync("api/Categoria/adicionar", categoriaJson);
+        if (response.StatusCode == HttpStatusCode.Created)
+            NavigationManager.NavigateTo("categoria/listar");
+    }
 }
 
 
